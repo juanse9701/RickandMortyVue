@@ -2,20 +2,15 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 
 const routes = [
   {
-    path: '/characters',
+    path: '/characters/:page?',
     alias: '/',
     name: 'Characters',
     component: () => import(/* webpackChunkName: "home" */'../views/Characters.vue')
   },
   {
-    path: '/episodes',
+    path: '/episodes/:page?',
     name: 'Episodes',
     component: () => import(/* webpackChunkName: "episodes" */ '../views/Episodes.vue')
-  },
-  {
-    path: '/locations',
-    name: 'Locations',
-    component: () => import(/* webpackChunkName: "locations" */ '../views/Locations.vue')
   }
 ]
 

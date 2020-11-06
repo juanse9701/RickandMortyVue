@@ -16,42 +16,18 @@
 </template>
 
 <script>
-import { request as fetchGraphql } from 'graphql-request';
-import { ref } from 'vue';
 import CardHorizontal from '../components/CardHorizontal'
-const URL_API = 'https://rickandmortyapi.com/graphql';
+import { CHARACTERS, URL_API } from '../graphql/Query';
+import { useFetchGql } from '../hooks/useFetchGql';
+
 export default {
     components: {
         CardHorizontal
     },
     setup() {
-        /* referencia a cualquier tipo de dato, es usado para valores que son asincronos */
-        let characters = ref([]);
-
-        fetchGraphql(URL_API, 
-        `
-            query {
-                characters(page: 1) {
-                    info {
-                    count,
-                    pages,
-                    next,
-                    prev
-                    }
-                    results {
-                    name,
-                    status,
-                    type,
-                    species,
-                    image
-                    }
-                }
-            }
-        `
-        ).then( data => characters.value = data.characters.results);
-        
+        const {data} = useFetchGql(URL_API, CHARACTERS);
         return {
-            characters
+            characters: data
         }
     }
 }

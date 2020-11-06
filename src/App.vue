@@ -1,17 +1,34 @@
 <template>
   <Navbar></Navbar>
-  <router-view/>
+  <main>
+    <router-view/>
+    <Paginator></Paginator>
+  </main>
   <Footer></Footer>
 </template>
 
 <script>
+import {provide, ref} from 'vue'
 import Footer from "./components/Footer"
 import Navbar from "./components/Navbar"
+import Paginator from "./components/Paginator"
+
 export default {
   components: {
     Footer,
-    Navbar
+    Navbar,
+    Paginator
   },
+  setup() {
+    let info = ref({
+    count: 0,
+    pages: 0,
+    next: 0,
+    prev: 0
+  })
+
+  provide('info', info)
+  }
 }
 </script>
 <style lang="scss">
@@ -48,6 +65,14 @@ body {
     color: #00bcd4;
     @include special-text;
   }  
+
+  ul {
+    list-style: none;
+  }
+
+  main {
+   background-color: whitesmoke;
+  }
 
 }
 

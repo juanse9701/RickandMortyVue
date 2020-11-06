@@ -10,7 +10,6 @@
     </div>
     <ul>
       <router-link to="/characters">Characters</router-link>
-      <router-link to="/locations">Locations</router-link>
       <router-link to="/episodes">Episodes</router-link>
     </ul>
   </nav>
